@@ -1,0 +1,37 @@
+{% if section.settings.container == 'container' %}
+    {% assign container_class = 'container' %}
+
+{% else %}
+    {% assign container_class = 'container-fluid' %}
+{% endif %}
+
+<div class="{{ container_class }}">
+    <h1>{{ page.title }}</h1>
+    <div>{{ page.content }}</div>
+</div>
+
+
+
+{% schema %}
+{
+    "name": "Page settings",
+    "settings": [
+        {
+            "type": "select",
+            "id": "container",
+            "label": "Layout",
+            "options": [
+            {
+                "value": "container",
+                "label": "Container"
+            },
+            { 
+                "value": "container-fluid",
+                "label": "container Fluid"
+            }
+            ],
+            "default": "container"
+        }
+    ]
+}
+{% endschema %}
