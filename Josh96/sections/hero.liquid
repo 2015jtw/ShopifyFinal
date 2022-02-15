@@ -1,20 +1,37 @@
-<section class="container py-5">
-    <div class="row">
-        <div class="col-lg-6 col-md-8 mx-auto">
-            <h1>Sample</h1>
-            <p>This is an example description</p>
-            <a href="#">Shop Now</a>
+<section class="inner-hero-section">
+    {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image | image_url }}" alt="">
+
+    {% else %}
+        {% capture current %}{% cycle 1,2 %}{% endcapture %}
+        {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+    
+            
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1>{{ section.settings.title }}</h1>
+                {{ section.settings.description }}
+                <a class="btn btn-secondary" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+            </div>
         </div>
     </div>
+    
 
 </section>
 
 
 {% schema %}
 {
-    "name": "hero",
+    "name": "Hero",
     "class": "hero-section",
     "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Heading Background Title"
+        },
         {
             "type": "text",
             "id": "title",
@@ -23,7 +40,7 @@
         },
         {
             "type": "richtext",
-            "id": "description",
+            "id": "description", 
             "default": "<p>Example Paragraph</p>",
             "label": "Heading Description"
         },
