@@ -1,6 +1,6 @@
 <section class="inner-hero-section">
     {% if section.settings.image != blank %}
-        <img src="{{ section.settings.image | image_url }}" alt="">
+        <img src="{{ section.settings.image | image_url: "master" }}" alt="{{ section.settings.image.alt }}">
 
     {% else %}
         {% capture current %}{% cycle 1,2 %}{% endcapture %}
@@ -8,7 +8,7 @@
     {% endif %}
     
             
-    <div class="container py-5">
+    <div class="container py-5"> 
         <div class="row">
             <div class="col-lg-6 col-md-8 mx-auto">
                 <h1>{{ section.settings.title }}</h1>

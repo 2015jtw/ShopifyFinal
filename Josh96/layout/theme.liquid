@@ -24,8 +24,7 @@
     {{ content_for_layout }}
   </main>
 
-  {{ 'bootstrap.min.js' | asset_url | script_tag }}
-  {{ 'application.js' | asset_url | script_tag }}
+  {% section 'footer-section' %}
 
 </body>
 </html>
