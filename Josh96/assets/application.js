@@ -8,3 +8,40 @@ if( document.getElementById('sort_by') != null ){
     });
 }
 
+// turn all of a country's provinces into an array that we use in addresses.liquid form
+if( document.getElementById('AddressCountryNew') != null ){
+    document.getElementById('AddressCountryNew').addEventListener('change', function(e){
+        var provinces = this.options[this.selectedIndex].getAttribute('data-provinces');
+        var provinceSelector = document.getElementById('AddressProvinceNew');
+        var provinceArray = JSON.parse(provinces);
+
+        // console.log(provinceArray)
+
+        if(provinceArray.length < 1){
+            provinceSelector.setAttribute('disabled', 'disabled')
+        } else{
+            provinceSelector.removeAttribute('disabled')
+        }
+
+        provinceSelector.innerHTML = "";
+        var options = "";
+        for(var i = 0; i < provinceArray.length; i++){
+            options += '<option value="' + provinceArray[i][0] + '">' + provinceArray[i][0] + '</option>';
+        }
+
+        provinceSelector.innerHTML = options;
+    })
+}
+
+
+if(document.getElementById('forgotPassword') != null){
+    document.getElementById('forgotPassword').addEventListener('click', function(e){
+        console.log("I clicked");
+        const element = document.querySelector("#forgot_password_form");
+        if(element.classList.contains("d-none")){
+            element.classList.remove('d-none');
+            element.classList.add('d-block');
+        }
+
+    });
+}

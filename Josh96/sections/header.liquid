@@ -28,6 +28,36 @@
                 <a class="nav-link" href="/cart">Cart</a>
             </li>
         </ul>
+
+        <!-- list to add login and register -->
+        <ul class="navbar-nav">
+          {% if shop.customer_accounts_enabled %}
+            {% if customer %}
+            <!-- once signed in -->
+              <li class="nav-item">
+                <a class="nav-link" href="{{routes.account_url}}">{{ 'general.layout.account_text' | t }}</a>
+              </li>
+              <!-- for logout -->
+              <li class="nav-item">
+                <a class="nav-link" href="{{routes.account_logout_url}}">{{ 'general.layout.logout_text' | t }}</a>
+              </li>
+             
+            {% else %}
+            <!-- to log in -->
+              <li class="nav-item">
+                <a class="nav-link" href="{{routes.account_login_url}}">{{ 'general.layout.login_text' | t }}</a>
+              </li>
+              <!-- to register -->
+              <li class="nav-item">
+                <a class="nav-link" href="{{routes.account_register_url}}">{{ 'general.layout.register_text' | t }}</a>
+              </li>
+            
+            {% endif %}
+          {% endif %}
+          
+        </ul>
+
+        <!-- search form -->
         <form action="/search" method="get" role="search">
           <input type="text" name="q" value="{{ search.terms | escape }}">
         </form>
@@ -37,12 +67,4 @@
 
 
 
-  {% if shop.customer_accounts_enabled %}
-    {% if customer %}
-      <a href="/account">account</a>
-      {{ 'log out'  | customer_logout_link }}
-    {% else %}
-      {{ 'log in ' | customer_login_link }}
-      {{ 'register' | customer_register_link }}
-    {% endif %}
-  {% endif %}
+
