@@ -22,7 +22,9 @@
         <div class="col-3 g-2">
           <div class="card" style="width: 18rem;">
             {% if image != blank %}
-                <img class="card-img-top" src="{{ image | img_url: 'medium' }}" alt="{{ product.title }}">
+                <a href="#" id="productInfoAnchor">
+                  <img class="card-img-top" src="{{ image | img_url: 'medium' }}" alt="{{ product.title }}">
+                </a>
                 {% else %}
                     {{ 'product-1' | placeholder_svg_tag: 'card-img-top' }}
             {% endif %}
@@ -43,3 +45,15 @@
   {% endpaginate %}
 </div>
 
+<div class="modal-fade" id="productInfoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-x1">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Example Modal
+      </div>
+    </div>
+  </div>
+</div>

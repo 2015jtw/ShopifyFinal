@@ -1,10 +1,10 @@
 <section class="inner-hero-section">
     {% if section.settings.image != blank %}
-        <img src="{{ section.settings.image | image_url: "master" }}" alt="{{ section.settings.image.alt }}">
+        <img src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.image.alt }}">
 
     {% else %}
-        {% capture current %}{% cycle 1,2 %}{% endcapture %}
-        {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+        {% assign placeholder = 'lifestyle-2' %}
+        {{ placeholder | placeholder_svg_tag: 'placeholder-svg' }}
     {% endif %}
     
             
@@ -40,7 +40,7 @@
         },
         {
             "type": "richtext",
-            "id": "description", 
+            "id": "description",
             "default": "<p>Example Paragraph</p>",
             "label": "Heading Description"
         },
