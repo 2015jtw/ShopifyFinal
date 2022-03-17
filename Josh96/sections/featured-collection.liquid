@@ -6,24 +6,23 @@
             <div class="col">
                 <div class="card">
                     {% if image != blank %}
-                        <img class="card-img-top" src="{{ image | img_url: 'medium' }}" alt="{{ product.title }}">
+                        <a href="{{product.url}}">
+                            <img class="card-img-top" src="{{ image | img_url: 'medium' }}" alt="{{ product.title }}">
+                        </a>
+                        
                         {% else %}
                             {{ 'product-1' | placeholder_svg_tag: 'card-img-top' }}
                     {% endif %}
+                    
                     <div class="card-body">
-                        <h3 class="card-title"><a href="{{ product.url }}">{{ product.title }}</a></h3>
-                        <p class="card-text">{{ product.price | money }}</p>
+                        <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
+                        <p>{{ product.price | money_without_trailing_zeros }}</p>
                     </div>
-                
-    
                 </div>
             </div>
-            
-        
         {% endfor %}
     </div>
-   
-
+    
 </section>
 
 {% schema %}
