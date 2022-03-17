@@ -1,0 +1,22 @@
+{
+    "sections": {
+        "hero": {
+            "type": "hero",
+            "settings": {
+                "image": "",
+                "title": "Welcome to Dev Store",
+                "description": "<p>We are happy to welcome you to our development store</p>",
+                "button_label": "Learn More",
+                "button_link": "https:\/\/google.com\/"
+            }
+        },
+        "featured-collection": {
+            "type": "featured-collection",
+            "settings": {
+                "featured_collection": "frontpage",
+                "title": "Featured Store Collection"
+            }
+        }
+    },
+    "order": ["hero", "featured-collection"]
+}
