@@ -1,3 +1,4 @@
+
 if( document.getElementById('sort_by') != null ){
     // Put your application javascript here
     document.querySelector("#sort_by").addEventListener('change', function(e){
@@ -56,3 +57,40 @@ if(localeItems.length > 0){
     });
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    update_card();
+});
+
+function update_card(){
+    fetch('/cart.js')
+    .then((resp) => resp.json())
+    .then((data) => document.getElementById("NumberOfCartItems").innerHTML = data.items.length)
+    .catch((err) => console.log(err))
+}
+
+var predictiveSearchInput = document.getElementById('searchInputField');
+var timer;
+var offCanvasSearch = document.getElementById('offcanvasSearchResult');
+var bsOffCanvas = new bootstrap.offCanvas(offCanvasSearch);
+
+if(predictiveSearchInput != null){
+    predictiveSearchInput.addEventListener('input', function(e) {
+        console.log(predictiveSearchInput.value);
+
+        clearTimeout(timer);
+        if(predictiveSearchInput.value){
+            timer = setTimeout(fetchPredictiveSearch, 3000);
+        }
+
+        
+    });
+}
+
+function fetchPredictiveSearch(){
+    fetch(`/search/suggest.json?q=${predictiveSearchInput.value}&resources[type]=product,article`)
+    .then(resp => resp.json())
+    .then(data => {
+        console.log(data);
+        bsOffCanvas.show();
+    });
+}
